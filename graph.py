@@ -15,15 +15,16 @@ class Graph:
 
   def get_cell(self, r, c):
     if 0 <= r <= self.length-1 and 0 <= c <= self.length-1:
-      print("Coordinates {}, {}".format(str(r), str(c)))
+      #print("Coordinates {}, {}".format(str(r), str(c)))
       return self.graph[r][c]
     else:
-      return ""
+      return None
 
   def get_neighbors(self, c):
-    candidates = [self.get_cell(c.r - 1, c.c), self.get_cell(c.r + 1, c.c),
-                  self.get_cell(c.r, c.c - 1), self.get_cell(c.r, c.c + 1)]
-    return [c for c in candidates if c is not ""]
+    candidates = list(filter(None, [self.get_cell(c.r - 1, c.c), self.get_cell(c.r + 1, c.c),
+                                    self.get_cell(c.r, c.c - 1), self.get_cell(c.r, c.c + 1)]))
+
+    return [c for c in candidates if c.value is not "x"]
 
   def get_mario(self):
     for row in self.graph:
@@ -37,6 +38,7 @@ class Cell:
     self.r = r
     self.c = c
     self.value = value
+    self.visited = False
 
   def set(self, r, c):
     self.r = r

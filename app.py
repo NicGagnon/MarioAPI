@@ -1,43 +1,58 @@
 # Author is Nicolas Gagnon 2019
-from graph import Graph, Cell
-#import queue
+from graph import Graph
 
 
 def find_shortest_path(N, grid):
   validate_grid(N, grid)
 
+  # Create graph with cells at each index
   graph = Graph(N)
   for i, row in enumerate(grid):
     for j, value in enumerate(row):
       graph.insert(i, j, value)
 
+  # Retrieve the mario cell
   mc = graph.get_mario()
-  graph.draw()
+  # graph.draw()
+  # get list of possible paths and filter to just the shortest paths
+  pp = bfs(mc, graph)
+  shortest_list_length = len(min(pp, key=len))
+  shortest_paths = [p for p in pp if len(p) == shortest_list_length]
+  return shortest_paths
 
-  parent = {}
-  queue = []
-  queue.append(mc)
+
+def bfs(mc, graph):
+  queue = [[mc]]
+  possible_paths = []
+
   while queue:
-    node = queue.pop(0)
+    # Gets the first path in the queue
+    path = queue.pop(0)
+
+    # Gets the last node in the path
+    node = path[-1]
+
+    # Checks if we got to the end
     if node.value == "p":
-      return backtrace(parent, mc, node)
-    for adjacent in graph.get_neighbors(node):
-      if node not in queue:
-        parent[adjacent] = node  # <<<<< record its parent
-        queue.append(adjacent)
+      possible_paths.append(trace_path(path))
+    # Add neighbor nodes that aren't in the path to the list and append paths to the queue
+    for current_neighbour in graph.get_neighbors(node):
+      new_path = list(path)
+      if current_neighbour not in new_path:
+        new_path.append(current_neighbour)
+        queue.append(new_path)
+  return possible_paths
 
-def backtrace(parent, start, end):
-    path = [end]
-    while path[-1] != start:
-      path.append(parent[path[-1]])
-    path.reverse()
 
-    word_path = []
-    for index in range(len(path)-1):
-      word_path.append(check_direction(path[index], path[index+1]))
-    return word_path
+def trace_path(path):
+  word_path = []
+  for index in range(len(path) - 1):
+    word_path.append(check_direction(path[index], path[index + 1]))
+  return tuple(word_path)
+
 
 def check_direction(cell_one, cell_two):
+  # Convert the directions to verbal translation
   if cell_one.c < cell_two.c:
     return "RIGHT"
   elif cell_one.c > cell_two.c:
@@ -47,7 +62,9 @@ def check_direction(cell_one, cell_two):
   else:
     return "UP"
 
+
 def validate_grid(N, grid):
+  # Check to see if the grid is sufficient size to include the princess and mario symbol
   if len(grid) <= 1 or N <= 1:
     raise Exception("Grid not sufficiently large")
   if N != len(grid):
@@ -58,6 +75,7 @@ def validate_grid(N, grid):
 
 
 def princess_check(grid):
+  # Check to see if princess symbol is in the grid
   PRINCESS_FLAG = False
   for row in grid:
     if 'm' in list(row):
@@ -67,12 +85,10 @@ def princess_check(grid):
 
 
 def mario_check(grid):
+  # Check to see if mario symbol is in the grid
   MARIO_FLAG = False
   for row in grid:
     if 'm' in list(row):
       MARIO_FLAG = True
   if not MARIO_FLAG:
     raise Exception("Mario not found in grid")
-
-
-
