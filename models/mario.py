@@ -1,6 +1,7 @@
 from database import db
 from datetime import datetime
 
+
 # SQLalchemy Model for each solution in the database
 class MarioModel(db.Model):
   __tablename__ = 'mario'
@@ -16,6 +17,14 @@ class MarioModel(db.Model):
     self.size = size
     self.grid = grid
     self.solution = solution
+
+  def json(self):
+    return {
+      'time_log': self.time_log,
+      'size': self.size,
+      'grid': self.grid,
+      'solution': self.solution
+    }
 
   def save_to_db(self):
     db.session.add(self)

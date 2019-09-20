@@ -21,7 +21,10 @@ class MyTestCase(unittest.TestCase):
     response = self.app.get('/', follow_redirects=True)
     self.assertEqual(200, response.status_code)
 
-  """Search Page return 200 on Success"""
+  """Log Page return 200 on Success"""
+  def test_log_page(self):
+    response = self.app.get('/log', follow_redirects=True)
+    self.assertEqual(200, response.status_code)
 
   def test_simple_problem(self):
     response = self.app.get('/mario/3/m--,-p-,---', follow_redirects=True)

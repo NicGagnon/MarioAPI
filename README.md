@@ -6,10 +6,10 @@ Find shortest path from Mario to Princess. API end points to deliver results.
 ##First task (Mario saving the princess):
 Description : Mario and the princess are trapped in a square grid (N*N), Mario needs to reach the princess with minimum number of steps (shortest paths), while avoiding any obstacles. Mario can move UP, DOWN, LEFT and RIGHT and can’t go outside of the grid. 
 
-###Goal
+*** Goal *** 
 Create a function or a class that given a square grid (N*N), the location of Mario and the princess will **return a list of the shortest paths possible from Mario to the princess.**
 
-###Variables : 
+*** Variables ***  
 - Mario denoted by (m)
 - Princess denoted by (p)
 - Obstacle denoted by (x)

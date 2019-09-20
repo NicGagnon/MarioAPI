@@ -7,6 +7,10 @@ class myTestCase(TestCase):
     path = find_shortest_path(3, ['--m', '-x-', '-p-'])
     self.assertEqual([('DOWN', 'DOWN', 'LEFT')], path)
 
+  def test_basic_with_uppercase(self):
+    path = find_shortest_path(3, ['--M', '-X-', '-P-'])
+    self.assertEqual([('DOWN', 'DOWN', 'LEFT')], path)
+
   def test_equal_distance_case(self):
     path = find_shortest_path(3, ['m--', '-p-', '---'])
     self.assertEqual([('DOWN', 'RIGHT'), ('RIGHT', 'DOWN')], path)

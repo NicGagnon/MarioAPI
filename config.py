@@ -12,6 +12,7 @@ class Config(object):
   SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
+# Converts the strings in the URL to a list of strings
 class StrListConverter(BaseConverter):
   regex = r'.+(?:,\.+)*,?'
 

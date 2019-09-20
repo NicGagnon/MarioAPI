@@ -9,11 +9,11 @@ def find_shortest_path(N, grid):
   graph = Graph(N)
   for i, row in enumerate(grid):
     for j, value in enumerate(row):
-      graph.insert(i, j, value)
+      graph.insert(i, j, value.lower())
 
   # Retrieve the mario cell
   mc = graph.get_mario()
-  # graph.draw()
+
   # get list of possible paths and filter to just the shortest paths
   pp = bfs(mc, graph)
   shortest_list_length = len(min(pp, key=len))
@@ -33,7 +33,7 @@ def bfs(mc, graph):
     node = path[-1]
 
     # Checks if we got to the end
-    if node.value == "p":
+    if node.value == 'p':
       possible_paths.append(trace_path(path))
     # Add neighbor nodes that aren't in the path to the list and append paths to the queue
     for current_neighbour in graph.get_neighbors(node):
@@ -45,6 +45,7 @@ def bfs(mc, graph):
 
 
 def trace_path(path):
+  # return back tuple of the word path
   word_path = []
   for index in range(len(path) - 1):
     word_path.append(check_direction(path[index], path[index + 1]))
@@ -78,7 +79,7 @@ def princess_check(grid):
   # Check to see if princess symbol is in the grid
   PRINCESS_FLAG = False
   for row in grid:
-    if 'm' in list(row):
+    if 'p' or 'P' in list(row):
       PRINCESS_FLAG = True
   if not PRINCESS_FLAG:
     raise Exception("Princess not found in grid")
@@ -88,7 +89,7 @@ def mario_check(grid):
   # Check to see if mario symbol is in the grid
   MARIO_FLAG = False
   for row in grid:
-    if 'm' in list(row):
+    if 'm' or 'M' in list(row):
       MARIO_FLAG = True
   if not MARIO_FLAG:
     raise Exception("Mario not found in grid")
