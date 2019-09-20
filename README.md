@@ -1,7 +1,12 @@
 # MarioAPI
 Find shortest path from Mario to Princess. API end points to deliver results. 
 
+# How to run
+```python run.py```<br/>
 
+Dependencies Needed : flask_sqlalchemy, werkzeug, datetime, and flask
+
+Future iterations of this project would be containerized with dependencies in a Dockerfile
 # Programming Challenge
 ## First task (Mario saving the princess):
 Description : Mario and the princess are trapped in a square grid (N*N), Mario needs to reach the princess with minimum number of steps (shortest paths), while avoiding any obstacles. Mario can move UP, DOWN, LEFT and RIGHT and can’t go outside of the grid. 
