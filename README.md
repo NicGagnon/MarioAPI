@@ -3,7 +3,7 @@ Find shortest path from Mario to Princess. API end points to deliver results.
 
 
 # Programming Challenge
-##First task (Mario saving the princess):
+## First task (Mario saving the princess):
 Description : Mario and the princess are trapped in a square grid (N*N), Mario needs to reach the princess with minimum number of steps (shortest paths), while avoiding any obstacles. Mario can move UP, DOWN, LEFT and RIGHT and can’t go outside of the grid. 
 
 *** Goal *** 
@@ -15,7 +15,7 @@ Create a function or a class that given a square grid (N*N), the location of Mar
 - Obstacle denoted by (x)
 - Free cell denoted by (-)
 
-###Tests
+### Tests
  - Validate that the given grid is a square matrix which contains one Mario, one princess and empty cells or obstacles. 
     * Check square property
     * Check Mario
