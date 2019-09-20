@@ -15,7 +15,6 @@ class Graph:
 
   def get_cell(self, r, c):
     if 0 <= r <= self.length-1 and 0 <= c <= self.length-1:
-      #print("Coordinates {}, {}".format(str(r), str(c)))
       return self.graph[r][c]
     else:
       return None
