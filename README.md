@@ -67,3 +67,75 @@ General Instructions:
 3. Once you are done with the challenge push it to a repository on your GitHub account.
 4. Stick to a python version 3.5+, and incase of using external modules (not supported by default in python) make sure to mention the version.
 5. Using (Dash by plotly) is preferred over using other web frameworks, however it won’t affect the decision.
+
+## Endpoints
+I have created two endpoints for the Mario API
+
+The first being the solution to the first task (Mario saving the princess)
+ #### /mario/<int:n>/<str_list:grid>
+ The n refers to the size of the grid, and the grid is a string of comma separate rows<br/>
+ *** Example *** <br/>
+ * /mario/3/m--,xx-,--p
+ ```json
+[
+  [
+    "RIGHT", 
+    "RIGHT", 
+    "DOWN", 
+    "DOWN"
+  ]
+]
+
+```
+ * /mario/5/-----,-xxx-,mxxxp,-xxx-,----- 
+ ```json
+[
+      [
+        "UP", 
+        "UP", 
+        "RIGHT", 
+        "RIGHT", 
+        "RIGHT", 
+        "RIGHT", 
+        "DOWN", 
+        "DOWN"
+      ], 
+      [
+        "DOWN", 
+        "DOWN", 
+        "RIGHT", 
+        "RIGHT", 
+        "RIGHT", 
+        "RIGHT", 
+        "UP", 
+        "UP"
+      ]
+]
+```
+
+The Second is a viewpoint for all logs in the database
+ #### /log
+ This will return a json object of all the rows in the api database
+ ```json
+[  
+    {
+    "grid": [
+      "m--", 
+      "-p-", 
+      "---"
+    ], 
+    "size": "3", 
+    "solution": [
+      [
+        "DOWN", 
+        "RIGHT"
+      ], 
+      [
+        "RIGHT", 
+        "DOWN"
+      ]
+    ], 
+    "time_log": "Fri, 20 Sep 2019 13:03:51 GMT"
+  }
+]
+```
