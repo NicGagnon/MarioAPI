@@ -15,7 +15,7 @@ Create a function or a class that given a square grid (N*N), the location of Mar
 - Obstacle denoted by (x)
 - Free cell denoted by (-)
 
-###Tests:
+###Tests
  - Validate that the given grid is a square matrix which contains one Mario, one princess and empty cells or obstacles. 
     * Check square property
     * Check Mario
